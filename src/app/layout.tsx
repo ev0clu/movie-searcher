@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
+import ReactQueryClientProvider from '@/components/ReactQueryClientProvider';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -21,9 +22,11 @@ export default function RootLayout({
       <body
         className={`flex min-h-screen flex-col font-sans antialiased ${inter.className}`}
       >
-        <Header />
-        <main className="flex flex-1 flex-col">{children}</main>
-        <Footer />
+        <ReactQueryClientProvider>
+          <Header />
+          <main className="flex flex-1 flex-col">{children}</main>
+          <Footer />
+        </ReactQueryClientProvider>
       </body>
     </html>
   );
