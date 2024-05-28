@@ -1,36 +1,41 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# **Movie Searcher App**
 
-## Getting Started
+A Movie Searcher app has built with Next.js framework. The app allows users to search for movies and list the findings. If the user click to a movie title or to the details link, the app navigate to a details page. The details page shows a brief overview about the movie. The information for summary gets from wikipedia. Additionally, the details page also contains 2 links, which let the user to navigate to imdb and wikipedia pages and get more informations about the given movie. The app uses TMDBW API to fetch information from TMDBW database.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Allow user to search for movies
+- Fetch data with TMDBW API usages
+- Next.js used
+- Render-as-you-fetch approach is used
+- Responsive design
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## How to run from local repository
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Clone the repository
+2. Run `npm install` command in your terminal
+3. Create .env file and add enviromental variables:
+   `TMDBW_API_KEY=`<br>
+4. Run `npm run dev` command in your terminal
+5. Server running at `http://localhost:3000/`
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Useful links and informations
 
-## Learn More
+- TMDBW documentation:
+  - [TMDWB Docs](https://developer.themoviedb.org/docs/getting-started)
+- Loading screen approaches (Fetch-than-render, Render-as-you-fetch, Suspense):
+  - [Medium.com](https://medium.com/jspoint/introduction-to-react-v18-suspense-and-render-as-you-fetch-approach-1b259551a4c0)
+  - [Linkedin.com](https://www.linkedin.com/pulse/fetch-then-render-render-as-you-fetch-fetch-on-render-amit-pal/)
 
-To learn more about Next.js, take a look at the following resources:
+### Dependencies
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [React](https://react.dev/)
+- [React DOM](https://www.npmjs.com/package/react-dom)
+- [Lucide Icons](https://lucide.dev/)
+- [Typescript](https://www.typescriptlang.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Next.js](https://nextjs.org/)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Layout
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+![layout-1 picture](https://github.com/ev0clu/movie-searcher/blob/main/layout-1.png?raw=true)<br>
