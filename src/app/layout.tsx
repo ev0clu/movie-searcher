@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`flex min-h-screen flex-col font-sans antialiased ${inter.className}`}
+        className={`flex min-h-screen flex-col gap-2 font-sans antialiased ${inter.className}`}
       >
         <ReactQueryClientProvider>
           <Header />
