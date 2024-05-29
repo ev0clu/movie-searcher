@@ -33,7 +33,7 @@ const Searchbar = ({ searchData }: SearchbarProps) => {
   };
 
   return (
-    <ContainerWrapper className="h-32 flex-row items-center justify-center bg-yellow-500">
+    <ContainerWrapper className="h-32 flex-row items-center justify-center rounded-lg bg-yellow-500">
       <div className="relative mx-5 flex w-96 items-center justify-center">
         <input
           className="h-10 w-full max-w-md rounded-lg border-none px-3 py-2 text-sm font-medium outline-none ring-0 ring-neutral-600 focus:ring-2"
