@@ -10,7 +10,7 @@ const ContentWrapper = ({
   className
 }: ContentWrapperProps) => {
   return (
-    <div className={`${className} flex w-full max-w-4xl`}>
+    <div className={`flex w-full max-w-4xl ${className} `}>
       {children}
     </div>
   );
