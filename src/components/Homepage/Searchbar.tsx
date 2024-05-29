@@ -33,10 +33,10 @@ const Searchbar = ({ searchData }: SearchbarProps) => {
   };
 
   return (
-    <ContentWrapper className="h-32 bg-yellow-500">
-      <div className="relative flex w-96 items-center justify-center">
+    <ContentWrapper className="h-32 flex-row items-center justify-center bg-yellow-500">
+      <div className="relative mx-5 flex w-96 items-center justify-center">
         <input
-          className="mx-5 h-10 w-full max-w-md rounded-lg border-none px-3 py-2 text-sm font-medium outline-none ring-0 ring-neutral-600 focus:ring-2"
+          className="h-10 w-full max-w-md rounded-lg border-none px-3 py-2 text-sm font-medium outline-none ring-0 ring-neutral-600 focus:ring-2"
           type="text"
           placeholder="Search for a movie"
           value={inputValue}
@@ -44,7 +44,7 @@ const Searchbar = ({ searchData }: SearchbarProps) => {
           onKeyDown={handleInputKeyDown}
         />
         <button
-          className="absolute right-0 mr-5 flex h-9 w-9 items-center justify-center rounded-lg hover:bg-neutral-100"
+          className="absolute right-0 flex h-9 w-9 items-center justify-center rounded-lg hover:bg-neutral-100"
           onClick={handleSearch}
         >
           <Search className="h-6 w-6" />

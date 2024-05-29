@@ -10,9 +10,7 @@ const ContentWrapper = ({
   className
 }: ContentWrapperProps) => {
   return (
-    <div
-      className={`${className} flex w-full max-w-4xl items-center justify-center`}
-    >
+    <div className={`${className} flex w-full max-w-4xl`}>
       {children}
     </div>
   );
