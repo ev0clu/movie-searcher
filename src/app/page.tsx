@@ -14,7 +14,7 @@ export default function Home() {
   return (
     <div className="flex w-full flex-1 flex-col items-center gap-2 px-10 pb-10 md:px-24 md:pb-24">
       <Searchbar searchData={searchData} />
-      <SearchResult searchData={searchData} title={title} />
+      {!!title && <SearchResult title={title} />}
     </div>
   );
 }
