@@ -6,6 +6,6 @@ export type TMovieQuery = {
     vote_average: number;
     genre_ids: number[];
   }[];
-  total_page: number;
+  total_pages: number;
   total_results: number;
 };
