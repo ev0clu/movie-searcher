@@ -13,14 +13,31 @@ import { Star } from 'lucide-react';
 type SearchResultProps = {
   searchData: (title: string) => void;
   title: string;
-  genresQuery: TGenresQuery | undefined;
 };
 
-const SearchResult = ({
-  searchData,
-  title,
-  genresQuery
-}: SearchResultProps) => {
+const SearchResult = ({ searchData, title }: SearchResultProps) => {
+  const { data: genresQuery } = useQuery<TGenresQuery>({
+    queryKey: ['genres'],
+    queryFn: async () => {
+      const response = await fetch(
+        `https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`,
+        {
+          method: 'GET',
+          headers: {
+            accept: 'application/json'
+          }
+        }
+      );
+      const json = await response.json();
+
+      if (!response.ok) {
+        throw new Error(json.status_message);
+      }
+
+      return json;
+    }
+  });
+
   const {
     data: moviesQuery,
     isLoading,
@@ -45,7 +62,6 @@ const SearchResult = ({
       }
 
       searchData('');
-      console.log(json);
 
       return json;
     },
