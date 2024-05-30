@@ -107,7 +107,7 @@ const SearchResult = ({
                   page={page}
                   previousPage={previousPage}
                   nextPage={nextPage}
-                  totalPages={moviesQuery.total_results}
+                  totalPages={moviesQuery.total_pages}
                 />
               )}
             </div>
