@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { Search } from 'lucide-react';
-import ContainerWrapper from '../ContainerWrapper';
+import Container4xlWrapper from '../Container4xlWrapper';
 import ErrorMessage from '../ErrorMessage';
 
 type SearchbarProps = {
@@ -46,7 +46,7 @@ const Searchbar = ({ searchData }: SearchbarProps) => {
   };
 
   return (
-    <ContainerWrapper className="h-32 flex-row items-center justify-center rounded-lg bg-yellow-500">
+    <Container4xlWrapper className="h-32 flex-row items-center rounded-lg bg-yellow-500">
       <div className="relative mx-5">
         <div className="relative flex max-w-md items-center justify-center md:w-96">
           <input
@@ -70,7 +70,7 @@ const Searchbar = ({ searchData }: SearchbarProps) => {
           </ErrorMessage>
         )}
       </div>
-    </ContainerWrapper>
+    </Container4xlWrapper>
   );
 };
 
