@@ -9,7 +9,6 @@ export const fetchMovieById = async (movieId: string) => {
     }
   );
   const json = await response.json();
-  console.log(json);
 
   if (!response.ok) {
     throw new Error(json.status_message);

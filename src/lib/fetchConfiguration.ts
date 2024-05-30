@@ -9,7 +9,6 @@ export const fetchConfiguration = async () => {
     }
   );
   const json = await response.json();
-  console.log(json);
 
   if (!response.ok) {
     throw new Error(json.status_message);
