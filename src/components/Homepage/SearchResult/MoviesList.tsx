@@ -22,10 +22,17 @@ const MoviesList = ({ moviesWithGenreNames }: MoviesListProps) => {
                   <div className="w-20 overflow-x-auto hover:cursor-pointer sm:w-32 md:w-44 lg:w-56">
                     <Link
                       href={`/movie/${movie.id}`}
-                      className="flex w-max flex-row font-semibold text-neutral-700"
+                      className="flex w-max flex-row"
                     >
                       <SquareArrowOutUpRight className="h-3 w-3" />
-                      {movie.title}
+                      <div>
+                        <div className="font-semibold text-neutral-700">
+                          {movie.title}
+                        </div>
+                        <div className="text-sm font-light text-neutral-600">
+                          {movie.release_date}
+                        </div>
+                      </div>
                     </Link>
                   </div>
                   <div className="w-20 overflow-x-auto sm:w-32 md:w-44 lg:w-56">
