@@ -1,74 +1,70 @@
 'use client';
 
-import { useQuery } from '@tanstack/react-query';
+import { useEffect } from 'react';
+import {
+  keepPreviousData,
+  useQuery,
+  useQueryClient
+} from '@tanstack/react-query';
 import ContainerWrapper from '../ContainerWrapper';
 import Loader from '../Loader';
 import ErrorMessage from '../ErrorMessage';
-import Link from 'next/link';
 import { getGenreNames } from '@/lib/getGenreNames';
 import { TGenresQuery } from '@/types/genresQuery.type';
-import { TMovieQuery } from '@/types/movieQuery.type';
-import { Star } from 'lucide-react';
+import { TMoviesQuery } from '@/types/moviesQuery.type';
+import { fetchMovies } from '@/lib/fetchMovies';
+import { fetchGenres } from '@/lib/fetchGenres';
+import MoviesList from './SearchResult/MoviesList';
+import Pagination from './SearchResult/Pagination';
 
 type SearchResultProps = {
-  searchData: (title: string) => void;
   title: string;
+  page: number;
+  previousPage: () => void;
+  nextPage: () => void;
 };
 
-const SearchResult = ({ searchData, title }: SearchResultProps) => {
+const SearchResult = ({
+  title,
+  page,
+  previousPage,
+  nextPage
+}: SearchResultProps) => {
+  const queryClient = useQueryClient();
+
   const { data: genresQuery } = useQuery<TGenresQuery>({
     queryKey: ['genres'],
-    queryFn: async () => {
-      const response = await fetch(
-        `https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`,
-        {
-          method: 'GET',
-          headers: {
-            accept: 'application/json'
-          }
-        }
-      );
-      const json = await response.json();
-
-      if (!response.ok) {
-        throw new Error(json.status_message);
-      }
-
-      return json;
-    }
+    queryFn: () => fetchGenres()
   });
 
   const {
     data: moviesQuery,
     isLoading,
+    isFetching,
     isError,
-    error
-  } = useQuery<TMovieQuery>({
-    queryKey: ['movies'],
-    queryFn: async () => {
-      const response = await fetch(
-        `https://api.themoviedb.org/3/search/movie?query=${title}&api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}`,
-        {
-          method: 'GET',
-          headers: {
-            accept: 'application/json'
-          }
-        }
-      );
-      const json = await response.json();
-
-      if (!response.ok) {
-        throw new Error(json.status_message);
-      }
-
-      searchData('');
-
-      return json;
-    },
+    error,
+    isPlaceholderData
+  } = useQuery<TMoviesQuery>({
+    queryKey: ['movies', { title, page }],
+    queryFn: () => fetchMovies(title, page),
+    placeholderData: keepPreviousData,
     enabled: !!title
   });
 
-  if (isLoading) {
+  useEffect(() => {
+    if (
+      !isPlaceholderData &&
+      page !== moviesQuery?.total_pages &&
+      !!title
+    ) {
+      queryClient.prefetchQuery({
+        queryKey: ['movies', { title, page: page + 1 }],
+        queryFn: () => fetchMovies(title, page + 1)
+      });
+    }
+  }, [moviesQuery, isPlaceholderData, page, title, queryClient]);
+
+  if (isLoading || isFetching) {
     return <Loader />;
   }
 
@@ -103,47 +99,17 @@ const SearchResult = ({ searchData, title }: SearchResultProps) => {
                   Rating
                 </div>
               </div>
-              <ul className="my-3 flex flex-col">
-                {moviesWithGenreNames?.length === 0 ? (
-                  <div className="my-5 text-center opacity-50">
-                    Movie does not exist in the TMDB database!
-                  </div>
-                ) : (
-                  moviesWithGenreNames?.map((movie) => {
-                    return (
-                      <div key={movie.id}>
-                        <li className="py-4 hover:cursor-pointer hover:bg-yellow-500 hover:bg-opacity-15">
-                          <div className="flex flex-row items-center justify-between gap-2 px-5">
-                            <Link
-                              href="/details"
-                              className="w-20 overflow-x-auto md:w-36 lg:w-48"
-                            >
-                              {movie.title}
-                            </Link>
-                            <div className="w-20 overflow-x-auto md:w-36 lg:w-48">
-                              {movie.genreNames.join(', ')}
-                            </div>
-                            <div className="flex w-20 items-center justify-end gap-2 text-end md:w-36 lg:w-48">
-                              <Star
-                                className="h-5 w-5"
-                                fill="#eab308"
-                                strokeWidth={0}
-                              />
-                              <div>
-                                <span className="font-semibold">
-                                  {movie.vote_average.toFixed(1)}
-                                </span>
-                                /10
-                              </div>
-                            </div>
-                          </div>
-                        </li>
-                        <div className="mx-5 my-1 h-[1px] bg-gray-800"></div>
-                      </div>
-                    );
-                  })
-                )}
-              </ul>
+              <MoviesList
+                moviesWithGenreNames={moviesWithGenreNames}
+              />
+              {moviesWithGenreNames?.length !== 0 && (
+                <Pagination
+                  page={page}
+                  previousPage={previousPage}
+                  nextPage={nextPage}
+                  totalPages={moviesQuery.total_results}
+                />
+              )}
             </div>
           </div>
         </div>
