@@ -1,4 +1,4 @@
-export type TMovieQuery = {
+export type TMoviesQuery = {
   page: number;
   results: {
     id: number;
