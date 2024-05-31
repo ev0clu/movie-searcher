@@ -1,13 +1,13 @@
 import { TMovieWithExternalIdQuery } from '@/types/movieWithExternalIdQuery.type';
 import SectionContainer from '../SectionContainer';
 
-type DetailInfomationsProps = {
+type DetailInformationsProps = {
   movieQuery: TMovieWithExternalIdQuery | undefined;
 };
 
-const DetailInfomations = ({
+const DetailInformations = ({
   movieQuery
-}: DetailInfomationsProps) => {
+}: DetailInformationsProps) => {
   return (
     <SectionContainer className="flex-col">
       <div className="text-2xl font-semibold">Overview</div>
@@ -17,7 +17,7 @@ const DetailInfomations = ({
         {!movieQuery?.external_ids.wikidata_id &&
           !movieQuery?.external_ids.imdb_id && (
             <div className="text-stone-600">
-              No more information available
+              No more information available!
             </div>
           )}
         <div className="mt-3 flex h-5 flex-row items-center gap-1 font-semibold">
@@ -50,4 +50,4 @@ const DetailInfomations = ({
   );
 };
 
-export default DetailInfomations;
+export default DetailInformations;

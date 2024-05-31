@@ -3,7 +3,7 @@
 import Container4xlWrapper from '@/components/Container4xlWrapper';
 import ErrorMessage from '@/components/ErrorMessage';
 import Loader from '@/components/Loader';
-import DetailInfomations from '@/components/MovieDetailsPage/DetailInfomations';
+import DetailInformations from '@/components/MovieDetailsPage/DetailInformations';
 import GeneralInformations from '@/components/MovieDetailsPage/GeneralInformations';
 import { fetchConfiguration } from '@/lib/fetchConfiguration';
 import { fetchMovieById } from '@/lib/fetchMovieById';
@@ -42,7 +42,7 @@ const Details = ({ params }: { params: { movieId: string } }) => {
           movieQuery={movieQuery}
           configuration={configuration}
         />
-        <DetailInfomations movieQuery={movieQuery} />
+        <DetailInformations movieQuery={movieQuery} />
       </Container4xlWrapper>
     </div>
   );

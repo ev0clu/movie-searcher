@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import React from 'react';
-import githubSrc from '../../public/github-mark.svg';
+import githubImgSrc from '../../public/github-mark.svg';
 
 const Footer = () => {
   return (
@@ -13,7 +13,7 @@ const Footer = () => {
         rel="noreferrer"
       >
         <Image
-          src={githubSrc}
+          src={githubImgSrc}
           priority
           alt="github-logo"
           className={'h-5 w-5 rounded-full hover:opacity-60'}
