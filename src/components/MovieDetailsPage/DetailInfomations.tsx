@@ -1,4 +1,5 @@
 import { TMovieWithExternalIdQuery } from '@/types/movieWithExternalIdQuery.type';
+import SectionContainer from '../SectionContainer';
 
 type DetailInfomationsProps = {
   movieQuery: TMovieWithExternalIdQuery | undefined;
@@ -8,7 +9,7 @@ const DetailInfomations = ({
   movieQuery
 }: DetailInfomationsProps) => {
   return (
-    <section className="flex w-[300px] flex-col sm:w-[500px] md:w-[580px]">
+    <SectionContainer className="flex-col">
       <div className="text-2xl font-semibold">Overview</div>
       <div>{movieQuery?.overview}</div>
       <div className="mt-10">
@@ -45,7 +46,7 @@ const DetailInfomations = ({
           )}
         </div>
       </div>
-    </section>
+    </SectionContainer>
   );
 };
 
