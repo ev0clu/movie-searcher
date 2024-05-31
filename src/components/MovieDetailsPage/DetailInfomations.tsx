@@ -17,7 +17,7 @@ const DetailInfomations = ({
         {!movieQuery?.external_ids.wikidata_id &&
           !movieQuery?.external_ids.imdb_id && (
             <div className="text-stone-600">
-              No morre information available
+              No more information available
             </div>
           )}
         <div className="mt-3 flex h-5 flex-row items-center gap-1 font-semibold">
